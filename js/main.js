@@ -184,7 +184,12 @@ const bindPage = async () => {
 		let minPoseConfidence = guiState.minPoseConfidence;
 		let minPartConfidence = guiState.minPartConfidence;
 
-		
+		if(guiState.output.showVideo){
+			ctx.clearRect(0, 0, videoWidth, videoHeight);
+			ctx.save();
+			ctx.drawImage(video, 0, 0, videoWidth, videoHeight);
+			ctx.restore();
+		}
 
 		const vecX = new THREE.Vector3(1, 0, 0);
 		const vecY = new THREE.Vector3(0, 1, 0);
