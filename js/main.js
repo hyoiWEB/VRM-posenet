@@ -432,7 +432,7 @@ const bindPage = async () => {
 	}
 
 	requestAnimationFrame(animate);
-
+}
 
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 bindPage();
