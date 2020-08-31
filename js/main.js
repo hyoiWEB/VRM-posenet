@@ -123,44 +123,7 @@ let clock = new THREE.Clock();
 let stats = new Stats();
 document.body.appendChild(stats.dom);
 
-const bindPage = async () => {
-	
-	const net = await posenet.load({
-		architecture: 'MobileNetV1',
-		outputStride: 16,
-		inputResolution: 513,
-		multiplier: 0.75
-	  });
-	  const video = await loadVideo();
 
-
-
-
-	/*
-	let video = document.getElementById("video");
-	video.width = videoWidth;
-	video.height = videoHeight;
-	video.src = "test.mp4";
-	video.loop = true;
-	video.play();
-	*/
-	setupGui([], net);
-
-	const resRenderer = initRenderer();
-	const resScene = initScene();
-
-	//レンダラ、シーンの初期化が済んでいるか
-	await Promise.all([resRenderer, resScene]);
-
-	loading = document.getElementById("loading");
-	loading.style.display = "none";
-
-	const canvas = document.getElementById("output");
-	const ctx = canvas.getContext("2d");
-	const flipHorizontal = false;
-
-	canvas.width = videoWidth;
-	canvas.height = videoHeight;
 
 	const animate = async () => {
 		requestAnimationFrame(animate);
@@ -232,8 +195,6 @@ const bindPage = async () => {
           console.log(JSON.parse(e.data));
           console.log('受信成功');
       
-        
-
 
 			let src = {};
 			src["nose"]      = keypoints[0];
@@ -434,7 +395,7 @@ const bindPage = async () => {
 	}
 
 	requestAnimationFrame(animate);
-}
+
 
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 bindPage();
