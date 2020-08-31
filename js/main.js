@@ -224,12 +224,16 @@ const bindPage = async () => {
 			dst.rotation.setFromQuaternion(quat);
 		}
 
-		poses.forEach(({score, keypoints}) => {
-			if(score < minPoseConfidence){ return; }
+		//WebSocket---------------------------------------------------------------------
+        var sock = new WebSocket('ws://hyoi-websocket.herokuapp.com/');
+   
+        sock.addEventListener('message',function(e){
+        var keypointsdata = JSON.parse(e.data);
+          console.log(JSON.parse(e.data));
+          console.log('受信成功');
+      
+        
 
-			if(guiState.output.showPoints){ drawKeypoints(keypoints, minPartConfidence, ctx); }
-			if(guiState.output.showSkeleton){ drawSkeleton(keypoints, minPartConfidence, ctx); }
-			if(guiState.output.showBoundingBox){ drawBoundingBox(keypoints, ctx); }
 
 			let src = {};
 			src["nose"]      = keypoints[0];
@@ -421,6 +425,7 @@ const bindPage = async () => {
 				}
 			}
 		});
+        //------------------------------------------------------------------------------
 
 
 		let delta = clock.getDelta();
