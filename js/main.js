@@ -396,9 +396,7 @@ document.body.appendChild(stats.dom);
 	}
 
 	requestAnimationFrame(animate);
-
+}
 
 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 bindPage();
-
-}
