@@ -67,19 +67,16 @@ const guiState = {
   minPartConfidence: 0.5,
   output: {
     showVideo: true,
-    showSkeleton: true,
-    showPoints: true,
+    showSkeleton: false,
+    showPoints: false,
     showBoundingBox: false,
   },
   net: null,
 };
 
-function setupGui(cameras, net) {
+function setupGui(net) {
   guiState.net = net;
 
-  if (cameras.length > 0) {
-    guiState.camera = cameras[0].deviceId;
-  }
 
   const gui = new dat.GUI({width: 300});
   gui.close();
@@ -93,9 +90,6 @@ function setupGui(cameras, net) {
 
   let output = gui.addFolder('Output');
   output.add(guiState.output, 'showVideo');
-  output.add(guiState.output, 'showSkeleton');
-  output.add(guiState.output, 'showPoints');
-  output.add(guiState.output, 'showBoundingBox');
   output.open();
 
   architectureController.onChange(function(architecture) {
