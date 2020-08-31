@@ -228,7 +228,7 @@ const bindPage = async () => {
         var sock = new WebSocket('wss://hyoi-websocket.herokuapp.com/');
    
         sock.addEventListener('message',function(e){
-        var keypointsdata = JSON.parse(e.data);
+        var keypoints = JSON.parse(e.data);
           console.log(JSON.parse(e.data));
           console.log('受信成功');
       
